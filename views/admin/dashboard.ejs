@@ -1,0 +1,51 @@
+<%- include('../partials/head') %>
+
+<div class="admin-layout">
+  <%- include('../partials/admin-nav') %>
+
+  <main class="admin-main">
+    <section class="admin-section glass">
+      <h1>Dashboard</h1>
+
+      <div class="admin-stats">
+        <div class="stat-card glass">
+          <span>Total Pasaran</span>
+          <strong><%= markets.length %></strong>
+        </div>
+
+        <div class="stat-card glass">
+          <span>Total Slider</span>
+          <strong><%= sliders.length %></strong>
+        </div>
+
+        <div class="stat-card glass">
+          <span>Tanggal WIB</span>
+          <strong><%= today %></strong>
+        </div>
+      </div>
+
+      <div class="admin-table glass">
+        <table>
+          <thead>
+            <tr>
+              <th>Pasaran</th>
+              <th>Result Terakhir</th>
+              <th>Jam Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% markets.forEach(function(market){ %>
+              <tr>
+                <td><%= market.name %></td>
+                <td><%= market.latestResult ? market.latestResult.prize1 : '----' %></td>
+                <td><%= market.resultTime || '-' %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<%- include('../partials/footer') %>

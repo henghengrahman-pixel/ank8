@@ -1,0 +1,23 @@
+<%- include('../partials/head') %>
+<div class="admin-layout">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <section class="admin-section glass">
+      <h1>Web Settings</h1>
+      <form method="POST" action="/admin/settings" class="admin-form grid-2">
+        <label>Site Name<input name="siteName" value="<%= settings.siteName %>" /></label>
+        <label>Logo URL<input name="logoUrl" value="<%= settings.logoUrl %>" /></label>
+        <label>Background Website<input name="backgroundMain" value="<%= settings.backgroundMain %>" /></label>
+        <label>Background Kiri<input name="backgroundLeft" value="<%= settings.backgroundLeft %>" /></label>
+        <label>Background Kanan<input name="backgroundRight" value="<%= settings.backgroundRight %>" /></label>
+        <label>Header Promosi<input name="headerPromo" value="<%= settings.headerPromo %>" /></label>
+        <label>Link WhatsApp<input name="whatsappLink" value="<%= settings.whatsappLink %>" /></label>
+        <label>Link Login<input name="loginLink" value="<%= settings.loginLink %>" /></label>
+        <label>Link Daftar<input name="registerLink" value="<%= settings.registerLink %>" /></label>
+        <label class="full">Footer Text<input name="footerText" value="<%= settings.footerText %>" /></label>
+        <button class="action-btn" type="submit">Simpan Settings</button>
+      </form>
+    </section>
+  </main>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,39 @@
+<%- include('../partials/head') %>
+<div class="admin-layout">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <section class="admin-section glass">
+      <h1>Daftar Pasaran</h1>
+      <form method="POST" action="/admin/markets" class="admin-form grid-3">
+        <input type="hidden" name="action" value="create" />
+        <input name="name" placeholder="Nama Pasaran" required />
+        <input name="slug" placeholder="Slug" required />
+        <input name="logoUrl" placeholder="Logo URL" required />
+        <input name="liveDrawLink" placeholder="Link Livedraw" />
+        <input name="closeTime" placeholder="Jam Tutup" />
+        <input name="resultTime" placeholder="Jam Result" />
+        <input name="description" placeholder="Deskripsi" class="span-2" />
+        <button class="action-btn" type="submit">Tambah Pasaran</button>
+      </form>
+      <div class="admin-list">
+        <% markets.forEach(function(item){ %>
+          <form method="POST" action="/admin/markets" class="admin-list-item glass market-edit">
+            <input type="hidden" name="id" value="<%= item.id %>" />
+            <input name="name" value="<%= item.name %>" />
+            <input name="slug" value="<%= item.slug %>" />
+            <input name="logoUrl" value="<%= item.logoUrl %>" />
+            <input name="liveDrawLink" value="<%= item.liveDrawLink %>" />
+            <input name="closeTime" value="<%= item.closeTime %>" />
+            <input name="resultTime" value="<%= item.resultTime %>" />
+            <input name="description" value="<%= item.description %>" />
+            <div class="row-actions">
+              <button class="action-btn small" name="action" value="update" type="submit">Update</button>
+              <button class="action-btn small danger" name="action" value="delete" type="submit">Hapus</button>
+            </div>
+          </form>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+</div>
+<%- include('../partials/footer') %>

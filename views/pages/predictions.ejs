@@ -1,0 +1,68 @@
+<%- include('../partials/head') %>
+
+<div class="site-shell" style="--bg-main:url('<%= site.backgroundMain %>');">
+  <%- include('../partials/header') %>
+
+  <main class="container inner-page glass page-block">
+    <div class="page-head">
+      <h1>Prediksi Togel Hari Ini</h1>
+
+      <select id="marketFilter" class="select-box">
+        <option value="">Cari Pasaran</option>
+        <% markets.forEach(function(market){ %>
+          <option value="<%= market.slug %>"><%= market.name %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="prediction-list" id="predictionList">
+      <% markets.forEach(function(market){ %>
+
+        <!-- 🔥 SEKARANG 1 CARD BISA DIKLIK SEMUA -->
+        <a href="/prediksi/<%= market.slug %>" class="prediction-item glass" data-slug="<%= market.slug %>">
+          
+          <img src="<%= market.logoUrl %>" alt="<%= market.name %>" />
+
+          <div class="prediction-content">
+            <h3>
+              PREDIKSI TOGEL <%= market.name.toUpperCase() %> 
+              <%= formatDisplayDate(today) %>
+            </h3>
+
+            <p><strong>Pasaran:</strong> <%= market.name %></p>
+
+            <% if (market.prediction) { %>
+              <p><strong>Angka Main:</strong> <%= market.prediction.angkaMain %></p>
+              <p><strong>Shio:</strong> <%= market.prediction.shio %></p>
+            <% } else { %>
+              <p>Prediksi belum tersedia.</p>
+            <% } %>
+          </div>
+
+          <div class="action-btn small">Lihat Detail</div>
+
+        </a>
+
+      <% }) %>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</div>
+
+<script>
+  const filter = document.getElementById('marketFilter');
+  const items = document.querySelectorAll('.prediction-item');
+
+  filter.addEventListener('change', function () {
+    const value = this.value;
+
+    items.forEach((item) => {
+      if (!value || item.dataset.slug === value) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>

@@ -1,0 +1,66 @@
+<%- include('../partials/head') %>
+
+<div class="site-shell" style="--bg-main:url('<%= site.backgroundMain %>');">
+  <%- include('../partials/header') %>
+
+  <main class="container main-content">
+    <section class="hero glass home-hero-box">
+      <div class="slider-wrap">
+        <div class="slider" data-slider>
+          <% if (sliders && sliders.length) { %>
+            <% sliders.forEach(function(slide, index){ %>
+              <div class="slide <%= index === 0 ? 'active' : '' %>">
+                <img src="<%= slide.imageUrl %>" alt="<%= slide.title %>" />
+              </div>
+            <% }) %>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="home-cta-row">
+        <a href="<%= site.loginLink %>" class="big-btn">LOGIN</a>
+        <a href="<%= site.registerLink %>" class="big-btn secondary">DAFTAR</a>
+        <a href="/prediksi" class="big-btn accent">PREDIKSI</a>
+      </div>
+    </section>
+
+    <section class="result-detail-box glass">
+      <div class="result-detail-head">
+        <a href="/" class="back-pill">← Kembali ke Home</a>
+        <h1>RESULT LENGKAP <%= market.name %></h1>
+        <p class="result-subtitle">History result pasaran <strong><%= market.name %></strong></p>
+      </div>
+
+      <div class="table-wrap premium-table">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Hari</th>
+              <th>Tanggal</th>
+              <th>Prize 1</th>
+              <th>Jam Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (history && history.length) { %>
+              <% history.forEach(function(item){ %>
+                <tr>
+                  <td><%= item.dayName %></td>
+                  <td><%= item.date %></td>
+                  <td class="big-num"><%= item.prize1 %></td>
+                  <td><%= item.resultTime %></td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="4" class="empty-row">Belum ada result.</td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+</div>

@@ -1,0 +1,26 @@
+<%- include('../partials/head') %>
+<div class="admin-layout">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <section class="admin-section glass">
+      <h1>Prediksi</h1>
+      <% markets.forEach(function(market){ const current = market.predictionPayload.current || {}; %>
+        <div class="admin-block glass">
+          <h2><%= market.name %></h2>
+          <form method="POST" action="/admin/predictions" class="admin-form grid-2">
+            <input type="hidden" name="slug" value="<%= market.slug %>" />
+            <label>Angka Main<input name="angkaMain" value="<%= current.angkaMain || '' %>" /></label>
+            <label>Shio<input name="shio" value="<%= current.shio || '' %>" /></label>
+            <label>Top 4D<input name="top4d" value="<%= current.top4d || '' %>" /></label>
+            <label>Top 3D<input name="top3d" value="<%= current.top3d || '' %>" /></label>
+            <label>Top 2D<input name="top2d" value="<%= current.top2d || '' %>" /></label>
+            <label>Colok Bebas<input name="colokBebas" value="<%= current.colokBebas || '' %>" /></label>
+            <label>Colok 2D<input name="colok2d" value="<%= current.colok2d || '' %>" /></label>
+            <button class="action-btn" type="submit">Simpan Prediksi</button>
+          </form>
+        </div>
+      <% }) %>
+    </section>
+  </main>
+</div>
+<%- include('../partials/footer') %>

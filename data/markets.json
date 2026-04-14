@@ -1,0 +1,42 @@
+[
+  {
+    "id": "m1",
+    "name": "Carolina Day",
+    "slug": "carolina-day",
+    "liveDrawLink": "#",
+    "logoUrl": "https://dummyimage.com/180x90/1f2937/ffffff&text=Carolina+Day",
+    "closeTime": "14:00",
+    "resultTime": "03:00",
+    "description": "Pasaran Carolina Day dengan update result harian."
+  },
+  {
+    "id": "m2",
+    "name": "Florida Mid",
+    "slug": "florida-mid",
+    "liveDrawLink": "#",
+    "logoUrl": "https://dummyimage.com/180x90/1f2937/ffffff&text=Florida+Mid",
+    "closeTime": "15:00",
+    "resultTime": "04:00",
+    "description": "Pasaran Florida Mid dengan result dan prediksi lengkap."
+  },
+  {
+    "id": "m3",
+    "name": "Cambodia",
+    "slug": "cambodia",
+    "liveDrawLink": "#",
+    "logoUrl": "https://dummyimage.com/180x90/1f2937/ffffff&text=Cambodia",
+    "closeTime": "19:00",
+    "resultTime": "23:00",
+    "description": "Pasaran Cambodia dengan history result tersimpan."
+  },
+  {
+    "id": "m4",
+    "name": "Vietnam",
+    "slug": "vietnam",
+    "liveDrawLink": "#",
+    "logoUrl": "https://dummyimage.com/180x90/1f2937/ffffff&text=Vietnam",
+    "closeTime": "17:00",
+    "resultTime": "20:00",
+    "description": "Pasaran Vietnam dengan halaman prediksi detail."
+  }
+]
