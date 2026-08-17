@@ -1,0 +1,36 @@
+<%- include('../partials/head') %>
+<div class="admin-layout">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <section class="admin-section glass">
+      <h1>Tambah Admin</h1>
+      <p class="muted">Admin utama tetap memakai ADMIN_ID dan ADMIN_PASSWORD dari environment variables.</p>
+      <form method="POST" action="/admin/admins" class="admin-form inline-form">
+        <input type="hidden" name="action" value="create" />
+        <input name="adminId" placeholder="Admin ID" required />
+        <input name="adminPassword" placeholder="Admin Password" required />
+        <button class="action-btn" type="submit">Tambah</button>
+      </form>
+      <div class="admin-table">
+        <table>
+          <thead><tr><th>Admin ID</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <% admins.forEach(function(item){ %>
+              <tr>
+                <td><%= item.adminId %></td>
+                <td>
+                  <form method="POST" action="/admin/admins">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="id" value="<%= item.id %>" />
+                    <button class="action-btn small danger" type="submit">Hapus</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,133 @@
+<%- include('../partials/head') %>
+
+<div class="site-shell" style="--bg-main:url('<%= site.backgroundMain %>');">
+  <%- include('../partials/header') %>
+
+  <main class="container main-content">
+
+    <section class="hero glass home-hero-box premium-home-hero">
+      <div class="hero-glow hero-glow-left"></div>
+      <div class="hero-glow hero-glow-right"></div>
+
+      <div class="slider-wrap premium-slider-wrap">
+        <div class="slider premium-slider" data-slider>
+          <% if (sliders && sliders.length) { %>
+            <% sliders.forEach(function(slide, index){ %>
+              <div class="slide <%= index === 0 ? 'active' : '' %>">
+                <img src="<%= slide.imageUrl %>" alt="<%= slide.title || ('Slide ' + (index + 1)) %>" />
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="slide active">
+              <img src="https://dummyimage.com/1200x420/111111/ffffff&text=Slider+Banner" alt="Default Slider" />
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="home-cta-row compact-cta-row">
+        <a href="<%= site.loginLink %>" class="big-btn compact-btn">
+          <span class="btn-shine"></span>
+          <span>LOGIN</span>
+        </a>
+        <a href="<%= site.registerLink %>" class="big-btn secondary compact-btn">
+          <span class="btn-shine"></span>
+          <span>DAFTAR</span>
+        </a>
+        <a href="/prediksi" class="big-btn accent compact-btn compact-btn-accent">
+          <span class="btn-shine"></span>
+          <span>PREDIKSI</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="prediction-detail-clean glass">
+      <a href="/prediksi" class="back-pill">← Beranda Prediksi</a>
+
+      <h1 class="prediction-title">
+        PREDIKSI <%= market.name.toUpperCase() %> TOGEL HARI INI
+        <%= current ? current.date : '-' %>
+      </h1>
+
+      <img src="<%= market.logoUrl %>" alt="<%= market.name %>" class="detail-logo-center" />
+
+      <% if (current) { %>
+        <div class="prediction-center">
+
+          <div class="row-line">
+            <span>ANGKA MAIN :</span>
+            <strong>( <%= current.angkaMain %> )</strong>
+          </div>
+
+          <div class="row-line">
+            <span>TOP 4D (BB) :</span>
+            <strong><%= current.top4d %></strong>
+          </div>
+
+          <div class="row-line">
+            <span>TOP 3D (BB) :</span>
+            <strong><%= current.top3d %></strong>
+          </div>
+
+          <div class="row-line">
+            <span>TOP 2D (BB) :</span>
+            <strong><%= current.top2d %></strong>
+          </div>
+
+          <div class="row-line">
+            <span>COLOK BEBAS :</span>
+            <strong><%= current.colokBebas %></strong>
+          </div>
+
+          <div class="row-line">
+            <span>COLOK 2D :</span>
+            <strong><%= current.colok2d %></strong>
+          </div>
+
+          <div class="row-line">
+            <span>SHIO JITU :</span>
+            <strong><%= current.shio %></strong>
+          </div>
+
+        </div>
+      <% } else { %>
+        <div class="empty-state">Prediksi belum tersedia.</div>
+      <% } %>
+    </section>
+
+    <section class="history-strip glass">
+      <div class="history-head">
+        <h2>PREDIKSI <%= market.name.toUpperCase() %> SEBELUMNYA</h2>
+        <span>History prediksi sebelumnya</span>
+      </div>
+
+      <div class="history-cards">
+        <% if (history && history.length) { %>
+          <% history.forEach(function(item){ %>
+            <article class="history-card glass">
+              <img src="<%= market.logoUrl %>" alt="<%= market.name %>" class="history-logo" />
+
+              <div class="history-date"><%= formatDisplayDate(item.date) %></div>
+
+              <h3>Prediksi <%= market.name %></h3>
+
+              <p>
+                Prediksi <%= market.name.toLowerCase() %> sebelumnya pada tanggal
+                <%= formatDisplayDate(item.date) %>.
+              </p>
+
+              <a href="/prediksi/<%= market.slug %>?date=<%= item.date %>" class="action-btn small">
+                👁 Lihat Prediksi
+              </a>
+            </article>
+          <% }) %>
+        <% } else { %>
+          <div class="empty-state">Belum ada history prediksi.</div>
+        <% } %>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('../partials/footer') %>
+</div>

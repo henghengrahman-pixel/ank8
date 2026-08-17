@@ -1,0 +1,14 @@
+[
+  {
+    "id": "s1",
+    "imageUrl": "https://dummyimage.com/1200x420/111827/f59e0b&text=Banner+Promo+1",
+    "title": "Promo 1",
+    "active": true
+  },
+  {
+    "id": "s2",
+    "imageUrl": "https://dummyimage.com/1200x420/000000/22c55e&text=Banner+Promo+2",
+    "title": "Promo 2",
+    "active": true
+  }
+]

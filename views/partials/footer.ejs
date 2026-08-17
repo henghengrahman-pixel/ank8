@@ -1,0 +1,104 @@
+<footer class="site-footer"></footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('[data-slider] .slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      if (!slides.length) return;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    if (slides.length > 1) {
+      showSlide(currentSlide);
+
+      setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }, 3000);
+    } else if (slides.length === 1) {
+      showSlide(0);
+    }
+
+    const modal = document.getElementById('livedrawModal');
+    const modalLogo = document.getElementById('modalLogo');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDate = document.getElementById('modalDate');
+    const modalResult = document.getElementById('modalResult');
+    const triggerButtons = document.querySelectorAll('.js-livedraw');
+    const closeButtons = document.querySelectorAll('[data-close-modal]');
+
+    function openModal(data) {
+      if (!modal) return;
+
+      if (modalLogo) {
+        modalLogo.src = data.logo || '';
+        modalLogo.alt = data.name || 'Logo';
+      }
+
+      if (modalTitle) {
+        modalTitle.textContent = `Livedraw ${data.name || ''}`;
+      }
+
+      if (modalDate) {
+        modalDate.textContent = data.date || '-';
+      }
+
+      if (modalResult) {
+        modalResult.textContent = data.result || '----';
+      }
+
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    triggerButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        openModal({
+          name: button.dataset.name,
+          logo: button.dataset.logo,
+          date: button.dataset.date,
+          result: button.dataset.result
+        });
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    const marketFilter = document.getElementById('marketFilter');
+    const predictionItems = document.querySelectorAll('#predictionList .prediction-item');
+
+    if (marketFilter && predictionItems.length) {
+      marketFilter.addEventListener('change', function () {
+        const value = marketFilter.value;
+
+        predictionItems.forEach((item) => {
+          if (!value || item.dataset.slug === value) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+  });
+</script>

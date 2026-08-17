@@ -1,0 +1,29 @@
+<%- include('../partials/head') %>
+<div class="admin-layout">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <section class="admin-section glass">
+      <h1>Slider Banner</h1>
+      <form method="POST" action="/admin/sliders" class="admin-form inline-form">
+        <input type="hidden" name="action" value="create" />
+        <input name="title" placeholder="Judul slider" required />
+        <input name="imageUrl" placeholder="Link gambar slider" required />
+        <button class="action-btn" type="submit">Tambah Slider</button>
+      </form>
+      <div class="admin-list">
+        <% sliders.forEach(function(slide){ %>
+          <form method="POST" action="/admin/sliders" class="admin-list-item glass">
+            <input type="hidden" name="id" value="<%= slide.id %>" />
+            <input name="title" value="<%= slide.title %>" />
+            <input name="imageUrl" value="<%= slide.imageUrl %>" />
+            <div class="row-actions">
+              <button class="action-btn small" name="action" value="update" type="submit">Update</button>
+              <button class="action-btn small danger" name="action" value="delete" type="submit">Hapus</button>
+            </div>
+          </form>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+</div>
+<%- include('../partials/footer') %>

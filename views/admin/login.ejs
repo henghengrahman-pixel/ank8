@@ -1,0 +1,25 @@
+<%- include('../partials/head') %>
+
+<div class="admin-login-shell">
+  <form class="admin-login glass" action="/admin/login" method="POST">
+    <h1>Admin Login</h1>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="alert"><%= error %></div>
+    <% } %>
+
+    <label>
+      ID Admin
+      <input type="text" name="id" placeholder="Masukkan ID admin" required />
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" placeholder="Masukkan password" required />
+    </label>
+
+    <button class="action-btn wide" type="submit">Masuk</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
